@@ -1,24 +1,26 @@
 
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-import time
-
 drive = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-login_text = 'Matheus Alves'
 
+drive.get("https://matheus-allvz.github.io/VectorPro/")
 
-drive.get("https://matheus-allvz.github.io/VectorPro/index.html")
 time.sleep(2)
 
-field = drive.find_element(by=id, value='session_key')
-field.send_keys(login_text)
-time.sleep(1)
+button = drive.find_element(By.CLASS_NAME, "sign-in")
+button.click()
 
+time.sleep(2)
 
+button = drive.find_element(By.CSS_SELECTOR, "a")
+button.click()
 
+time.sleep(2)
 drive.close()
 drive.quit()
 
-print("Test sucesfuly executed!")
+print("Test executed!")
